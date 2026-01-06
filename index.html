@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna e legível */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             margin: 0;
@@ -37,21 +37,31 @@
 
         .header h1 {
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            font-size: 1.6rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
 
         .definicao-metanoia {
-            font-size: 1rem;
-            line-height: 1.5;
+            max-width: 500px;
+            margin: 0 auto 25px auto;
+            font-size: 0.95rem;
+            line-height: 1.6;
             color: var(--text-light);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 15px 0;
+            padding: 20px 0;
             text-align: center;
+        }
+
+        .advertencia-etica {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: #7f8c8d;
             font-style: italic;
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         .step { display: none; }
@@ -59,10 +69,9 @@
 
         label {
             display: block;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             margin-bottom: 25px;
             line-height: 1.4;
-            font-weight: 400;
         }
 
         textarea, select, input[type="text"] {
@@ -75,7 +84,6 @@
             color: var(--text-main);
             outline: none;
             box-sizing: border-box;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .nav-buttons {
@@ -89,12 +97,12 @@
             background: var(--text-main);
             color: #fff;
             border: none;
-            padding: 15px 35px;
+            padding: 14px 30px;
             border-radius: 30px;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: opacity 0.3s;
         }
 
@@ -109,7 +117,7 @@
             font-size: 1rem;
             color: #2c3e50;
             line-height: 1.6;
-            border-left: 4px solid #3498db;
+            border-left: 4px solid var(--text-main);
             border-radius: 4px;
         }
 
@@ -119,9 +127,9 @@
             font-size: 0.8rem;
             color: #7f8c8d;
             text-align: center;
-            padding: 30px 20px;
+            padding: 40px 20px;
             background: #f1f1f1;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .footer-license a { color: #2980b9; text-decoration: none; }
@@ -135,7 +143,11 @@
     <header class="header">
         <h1>Método Metanóia</h1>
         <div class="definicao-metanoia">
-            Mudar o modo de pensar para mudar o modo de viver.
+            <strong>Metanóia</strong> <br>
+            Processo de transformação profunda do modo de pensar, sentir, viver e se relacionar.
+        </div>
+        <div id="manifesto" class="advertencia-etica">
+            "O Método Metanóia não faz promessas vazias. O sistema disponibiliza as ferramentas, mas você é o guia. Transforme-se a cada dia naquilo que você mesmo quer ser."
         </div>
     </header>
 
@@ -151,7 +163,7 @@
             </select>
             <div class="nav-buttons">
                 <span></span>
-                <button onclick="nextStep(1)">Começar Exercício</button>
+                <button onclick="nextStep(1)">Iniciar Percurso</button>
             </div>
         </div>
 
@@ -176,7 +188,7 @@
         <div class="step" data-step="4">
             <label>Dê uma nota de 0 a 10: o quanto a sua reação atual está realmente ajudando a resolver o problema?</label>
             <input type="range" id="eficacia" min="0" max="10" value="5" oninput="document.getElementById('nota').innerText = this.value">
-            <div style="text-align:center; font-size: 2rem; font-weight: bold; color: #3498db;" id="nota">5</div>
+            <div style="text-align:center; font-size: 2rem; font-weight: bold; color: var(--text-main);" id="nota">5</div>
             <div class="nav-buttons">
                 <button class="btn-back" onclick="prevStep(4)">Voltar</button>
                 <button onclick="nextStep(4)">Próximo</button>
@@ -208,7 +220,7 @@
     <a href="https://psicologiaebemviver.club/">Método Metanóia</a> © 2026 por <br>
     <a href="https://romeromarcius.com/">Criação e desenvolvimento de Romero Marcius Viegas Meireles (RomeroPsiBit) - psicólogo CRP: 04/21500, com auxílio da Gemini AI - Google</a> 
     <br><br>Este trabalho é licenciado sob <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>
-    <div style="margin-top: 10px; opacity: 0.6;">
+    <div style="margin-top: 15px; opacity: 0.7;">
         <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="CC" style="height: 1.5em;">
         <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="BY" style="height: 1.5em;">
         <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="NC" style="height: 1.5em;">
@@ -226,6 +238,7 @@
     };
 
     function nextStep(current) {
+        if(current === 1) document.getElementById('manifesto').style.display = 'none';
         if(current === 5) {
             const area = document.getElementById('area').value;
             document.getElementById('psico-box').innerText = metanoia_insights[area];
@@ -236,6 +249,7 @@
     }
 
     function prevStep(current) {
+        if(current === 2) document.getElementById('manifesto').style.display = 'block';
         document.querySelector(`[data-step="${current}"]`).classList.remove('active');
         document.querySelector(`[data-step="${current - 1}"]`).classList.add('active');
     }
@@ -254,7 +268,7 @@
             `MEU PRÓXIMO PASSO: ${document.getElementById('acao').value}\n\n` +
             `REFLEXÃO:\n${metanoia_insights[area]}\n` +
             `------------------------------------------------------------\n` +
-            `Privacidade: Este arquivo é seu. Seus dados não foram salvos na internet.\n` +
+            `Privacidade: Seus dados não foram salvos na internet.\n` +
             `Licença CC BY-NC-ND 4.0`;
 
         const blob = new Blob([texto], { type: 'text/plain' });
