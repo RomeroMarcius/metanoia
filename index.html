@@ -13,7 +13,7 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna e legível */
             background-color: var(--bg);
             color: var(--text-main);
             margin: 0;
@@ -23,9 +23,9 @@
         }
 
         .container {
-            max-width: 650px;
-            width: 85%;
-            padding: 60px 20px;
+            max-width: 600px;
+            width: 90%;
+            padding: 40px 20px;
             margin: auto;
             flex-grow: 1;
         }
@@ -36,119 +36,97 @@
         }
 
         .header h1 {
-            font-weight: normal;
-            letter-spacing: 5px;
+            font-weight: 300;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
         }
 
         .definicao-metanoia {
-            max-width: 500px;
-            margin: 0 auto 30px auto;
-            font-size: 0.9rem;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.5;
             color: var(--text-light);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 20px 0;
+            padding: 15px 0;
             text-align: center;
-        }
-
-        .advertencia-etica {
-            font-size: 0.8rem;
-            line-height: 1.6;
-            color: #7f8c8d;
             font-style: italic;
-            text-align: center;
-            margin-bottom: 40px;
         }
 
         .step { display: none; }
-        .step.active { display: block; animation: fadeIn 0.8s ease-in-out; }
+        .step.active { display: block; animation: fadeIn 0.5s ease-in-out; }
 
         label {
             display: block;
-            font-size: 1.25rem;
-            margin-bottom: 30px;
-            line-height: 1.5;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            line-height: 1.4;
+            font-weight: 400;
         }
 
         textarea, select, input[type="text"] {
             width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--border);
-            padding: 15px 0;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
             font-size: 1.1rem;
-            font-family: 'Georgia', serif;
             color: var(--text-main);
             outline: none;
             box-sizing: border-box;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         .nav-buttons {
-            margin-top: 50px;
+            margin-top: 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         button {
-            background: none;
-            border: 1px solid var(--text-main);
-            padding: 12px 30px;
+            background: var(--text-main);
+            color: #fff;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 30px;
             cursor: pointer;
-            font-family: inherit;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.75rem;
-            transition: all 0.4s;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
         }
 
-        button:hover { background: var(--text-main); color: #fff; }
+        button:hover { opacity: 0.8; }
 
-        .btn-back { border: none; color: var(--text-light); }
+        .btn-back { background: none; color: var(--text-light); border: 1px solid var(--border); }
 
         .psico-edu {
-            margin-top: 40px;
-            padding: 25px;
-            background: #f4f4f2;
-            font-size: 0.95rem;
-            color: #34495e;
-            line-height: 1.7;
-            border-left: 3px solid var(--text-main);
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            font-size: 1rem;
+            color: #2c3e50;
+            line-height: 1.6;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
         }
 
         input[type="range"] { width: 100%; margin: 25px 0; cursor: pointer; }
 
-        /* Rodapé de Licenciamento */
         .footer-license {
-            font-size: 0.75rem;
-            color: #95a5a6;
-            text-align: center;
-            padding: 40px 20px;
-            line-height: 1.8;
-            border-top: 1px solid #f0f0f0;
-        }
-
-        .footer-license a {
+            font-size: 0.8rem;
             color: #7f8c8d;
-            text-decoration: none;
-            border-bottom: 1px solid #dcdcdc;
+            text-align: center;
+            padding: 30px 20px;
+            background: #f1f1f1;
+            line-height: 1.6;
         }
 
-        .footer-license a:hover { color: #1a1a1a; border-bottom: 1px solid #1a1a1a; }
+        .footer-license a { color: #2980b9; text-decoration: none; }
 
-        .cc-icons {
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            align-items: center;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -157,101 +135,97 @@
     <header class="header">
         <h1>Método Metanóia</h1>
         <div class="definicao-metanoia">
-            <strong>Metanóia</strong> <br>
-            Processo de transformação profunda do modo de pensar, sentir, viver e se relacionar.
-        </div>
-        <div id="manifesto" class="advertencia-etica">
-            "O Método Metanóia não faz promessas vazias. O sistema disponibiliza as ferramentas, mas você é o guia. Transforme-se a cada dia naquilo que você mesmo quer ser."
+            Mudar o modo de pensar para mudar o modo de viver.
         </div>
     </header>
 
     <div id="metanoia-flow">
         <div class="step active" data-step="1">
-            <label>Em qual esfera da sua existência o desafio se manifesta com maior urgência?</label>
+            <label>Em qual área da sua vida você sente que precisa de ajuda agora?</label>
             <select id="area">
-                <option value="Saúde">Dimensão Biológica e Vitalidade</option>
-                <option value="Trabalho">Esfera Profissional e Realização</option>
-                <option value="Educação">Desenvolvimento Cognitivo e Saber</option>
-                <option value="Relacionamentos">Dinâmicas Interpessoais e Afeto</option>
-                <option value="Finanças">Gestão de Recursos e Segurança</option>
+                <option value="Saúde">Saúde e Disposição (Corpo e Mente)</option>
+                <option value="Trabalho">Trabalho e Carreira</option>
+                <option value="Estudos">Estudos e Aprendizado</option>
+                <option value="Relacionamentos">Família, Amigos e Amor</option>
+                <option value="Finanças">Dinheiro e Organização</option>
             </select>
             <div class="nav-buttons">
                 <span></span>
-                <button onclick="nextStep(1)">Iniciar Percurso</button>
+                <button onclick="nextStep(1)">Começar Exercício</button>
             </div>
         </div>
 
         <div class="step" data-step="2">
-            <label>Como você descreveria a essência desse desafio hoje?</label>
-            <textarea id="desafio" rows="2" placeholder="Descreva o fenômeno..."></textarea>
+            <label>O que exatamente está acontecendo que mais incomoda você hoje?</label>
+            <textarea id="desafio" rows="3" placeholder="Conte brevemente o que você está enfrentando..."></textarea>
             <div class="nav-buttons">
-                <button class="btn-back" onclick="prevStep(2)">Retornar</button>
-                <button onclick="nextStep(2)">Avançar</button>
+                <button class="btn-back" onclick="prevStep(2)">Voltar</button>
+                <button onclick="nextStep(2)">Próximo</button>
             </div>
         </div>
 
         <div class="step" data-step="3">
-            <label>Qual tem sido o seu posicionamento (ação ou omissão) diante disso?</label>
-            <textarea id="estrategia" rows="2" placeholder="Sua reação atual..."></textarea>
+            <label>Como você tem reagido a essa situação até agora?</label>
+            <textarea id="estrategia" rows="3" placeholder="O que você está fazendo ou deixando de fazer?"></textarea>
             <div class="nav-buttons">
-                <button class="btn-back" onclick="prevStep(3)">Retornar</button>
-                <button onclick="nextStep(3)">Avançar</button>
+                <button class="btn-back" onclick="prevStep(3)">Voltar</button>
+                <button onclick="nextStep(3)">Próximo</button>
             </div>
         </div>
 
         <div class="step" data-step="4">
-            <label>Numa escala de 0 a 10, quão funcional é esse posicionamento para sua evolução?</label>
+            <label>Dê uma nota de 0 a 10: o quanto a sua reação atual está realmente ajudando a resolver o problema?</label>
             <input type="range" id="eficacia" min="0" max="10" value="5" oninput="document.getElementById('nota').innerText = this.value">
-            <div style="text-align:center; font-size: 1.5rem;" id="nota">5</div>
+            <div style="text-align:center; font-size: 2rem; font-weight: bold; color: #3498db;" id="nota">5</div>
             <div class="nav-buttons">
-                <button class="btn-back" onclick="prevStep(4)">Retornar</button>
-                <button onclick="nextStep(4)">Avançar</button>
+                <button class="btn-back" onclick="prevStep(4)">Voltar</button>
+                <button onclick="nextStep(4)">Próximo</button>
             </div>
         </div>
 
         <div class="step" data-step="5">
-            <label>Se você pudesse adotar uma perspectiva externa e isenta, que orientação daria a si mesmo?</label>
-            <textarea id="conselho" rows="2" placeholder="O conselho do observador lúcido..."></textarea>
+            <label>Se você fosse um amigo muito sábio dando um conselho para si mesmo, o que diria?</label>
+            <textarea id="conselho" rows="3" placeholder="Qual seria a orientação mais sensata agora?"></textarea>
             <div class="nav-buttons">
-                <button class="btn-back" onclick="prevStep(5)">Retornar</button>
-                <button onclick="nextStep(5)">Avançar</button>
+                <button class="btn-back" onclick="prevStep(5)">Voltar</button>
+                <button onclick="nextStep(5)">Próximo</button>
             </div>
         </div>
 
         <div class="step" data-step="6">
-            <label>Qual micro-movimento concreto é possível realizar nas próximas 24 horas?</label>
-            <input type="text" id="acao" placeholder="Um gesto em direção à mudança...">
+            <label>Qual é a única coisa pequena que você consegue fazer amanhã para começar essa mudança?</label>
+            <input type="text" id="acao" placeholder="Um pequeno passo possível...">
             <div id="psico-box" class="psico-edu"></div>
             <div class="nav-buttons">
-                <button class="btn-back" onclick="prevStep(6)">Retornar</button>
-                <button onclick="exportMetanoia()">Consolidar Percurso</button>
+                <button class="btn-back" onclick="prevStep(6)">Voltar</button>
+                <button onclick="exportMetanoia()">Finalizar e Salvar</button>
             </div>
         </div>
     </div>
 </div>
 
 <footer class="footer-license">
-    <a href="https://psicologiaebemviver.club/">Método Metanóia</a> © 2026 por 
+    <a href="https://psicologiaebemviver.club/">Método Metanóia</a> © 2026 por <br>
     <a href="https://romeromarcius.com/">Criação e desenvolvimento de Romero Marcius Viegas Meireles (RomeroPsiBit) - psicólogo CRP: 04/21500, com auxílio da Gemini AI - Google</a> 
-    <br>Licenciado sob <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>
-    <div class="cc-icons">
-        <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="CC" style="height: 1.2em;">
-        <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="BY" style="height: 1.2em;">
-        <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="NC" style="height: 1.2em;">
-        <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="ND" style="height: 1.2em;">
+    <br><br>Este trabalho é licenciado sob <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>
+    <div style="margin-top: 10px; opacity: 0.6;">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="CC" style="height: 1.5em;">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="BY" style="height: 1.5em;">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="NC" style="height: 1.5em;">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="ND" style="height: 1.5em;">
     </div>
 </footer>
+
 <script>
     const metanoia_insights = {
-        "Saúde": "Fundamentação: A metanóia começa pelo templo biológico. O sofrimento psíquico frequentemente encontra eco em um corpo desregulado.",
-        "Trabalho": "Fundamentação: Sua realização profissional é uma extensão do seu ser, não a sua totalidade. Refletir sobre o 'porquê' precede o 'como'.",
-        "Educação": "Fundamentação: O acúmulo de informações difere da sabedoria. A verdadeira mudança ocorre quando o saber vira ação.",
-        "Relacionamentos": "Fundamentação: Todo encontro é um espelho. Compreender seus vínculos exige discernir entre suas projeções e a alteridade do outro.",
-        "Finanças": "Fundamentação: A gestão de recursos reflete sua relação com segurança e autonomia. Identifique carências projetadas na estabilidade."
+        "Saúde": "Dica Psi: Mudar a mente começa pelo corpo. Cuidar do seu sono e da sua energia é o primeiro passo para pensar melhor.",
+        "Trabalho": "Dica Psi: O trabalho é o que você faz, não quem você é. Tente separar sua identidade da sua função profissional.",
+        "Estudos": "Dica Psi: Aprender algo novo exige paciência consigo mesmo. O conhecimento só vira sabedoria quando colocamos em prática.",
+        "Relacionamentos": "Dica Psi: Nossos vínculos com os outros são como espelhos. Entender o outro ajuda a entender a nós mesmos.",
+        "Finanças": "Dica Psi: A forma como lidamos com o dinheiro diz muito sobre como buscamos segurança. O equilíbrio é o segredo."
     };
 
     function nextStep(current) {
-        if(current === 1) document.getElementById('manifesto').style.display = 'none';
         if(current === 5) {
             const area = document.getElementById('area').value;
             document.getElementById('psico-box').innerText = metanoia_insights[area];
@@ -262,34 +236,33 @@
     }
 
     function prevStep(current) {
-        if(current === 2) document.getElementById('manifesto').style.display = 'block';
         document.querySelector(`[data-step="${current}"]`).classList.remove('active');
         document.querySelector(`[data-step="${current - 1}"]`).classList.add('active');
     }
 
     function exportMetanoia() {
         const area = document.getElementById('area').value;
-        const texto = `MÉTODO METANÓIA - CONSOLIDAÇÃO\n` +
-            `Autor: Romero Marcius Viegas Meireles\n` +
+        const texto = `MEU EXERCÍCIO - MÉTODO METANÓIA\n` +
+            `Guia: Romero Marcius Viegas Meireles (RomeroPsiBit)\n` +
             `Data: ${new Date().toLocaleString()}\n` +
             `------------------------------------------------------------\n` +
-            `ESFERA: ${area}\n` +
-            `DESAFIO: ${document.getElementById('desafio').value}\n` +
-            `POSICIONAMENTO: ${document.getElementById('estrategia').value}\n` +
-            `FUNCIONALIDADE: ${document.getElementById('eficacia').value}/10\n` +
-            `CONSELHO: ${document.getElementById('conselho').value}\n` +
-            `AÇÃO 24H: ${document.getElementById('acao').value}\n\n` +
-            `FUNDAMENTAÇÃO:\n${metanoia_insights[area]}\n` +
+            `ÁREA: ${area}\n` +
+            `O PROBLEMA: ${document.getElementById('desafio').value}\n` +
+            `MINHA REAÇÃO: ${document.getElementById('estrategia').value}\n` +
+            `NOTA DE EFICÁCIA: ${document.getElementById('eficacia').value}/10\n` +
+            `MEU CONSELHO PARA MIM MESMO: ${document.getElementById('conselho').value}\n` +
+            `MEU PRÓXIMO PASSO: ${document.getElementById('acao').value}\n\n` +
+            `REFLEXÃO:\n${metanoia_insights[area]}\n` +
             `------------------------------------------------------------\n` +
-            `Licenciado sob CC BY-NC-ND 4.0\n` +
-            `Este arquivo é de propriedade única do usuário.`;
+            `Privacidade: Este arquivo é seu. Seus dados não foram salvos na internet.\n` +
+            `Licença CC BY-NC-ND 4.0`;
 
         const blob = new Blob([texto], { type: 'text/plain' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.download = `Metanoia_Registro.txt`;
+        link.download = `Meu_Progresso_Metanoia.txt`;
         link.click();
-        alert("Percurso consolidado localmente.");
+        alert("Excelente! Seu exercício foi salvo no seu dispositivo.");
     }
 </script>
 </body>
