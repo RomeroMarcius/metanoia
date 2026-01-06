@@ -64,6 +64,14 @@
             margin-bottom: 40px;
         }
 
+        .chamada-acao {
+            display: block;
+            margin-top: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-style: normal;
+        }
+
         .step { display: none; }
         .step.active { display: block; animation: fadeIn 0.5s ease-in-out; }
 
@@ -146,8 +154,9 @@
             <strong>Metanóia</strong> <br>
             Processo de transformação profunda do modo de pensar, sentir, viver e se relacionar.
         </div>
-        <div id="manifesto" class="advertencia-etica">
+        <div id="manifesto-box" class="advertencia-etica">
             "O Método Metanóia não faz promessas vazias. O sistema disponibiliza as ferramentas, mas você é o guia. Transforme-se a cada dia naquilo que você mesmo quer ser."
+            <span class="chamada-acao">Responda as perguntas das etapas abaixo e inicie o seu movimento de transformação agora:</span>
         </div>
     </header>
 
@@ -238,7 +247,7 @@
     };
 
     function nextStep(current) {
-        if(current === 1) document.getElementById('manifesto').style.display = 'none';
+        if(current === 1) document.getElementById('manifesto-box').style.display = 'none';
         if(current === 5) {
             const area = document.getElementById('area').value;
             document.getElementById('psico-box').innerText = metanoia_insights[area];
@@ -249,7 +258,7 @@
     }
 
     function prevStep(current) {
-        if(current === 2) document.getElementById('manifesto').style.display = 'block';
+        if(current === 2) document.getElementById('manifesto-box').style.display = 'block';
         document.querySelector(`[data-step="${current}"]`).classList.remove('active');
         document.querySelector(`[data-step="${current - 1}"]`).classList.add('active');
     }
