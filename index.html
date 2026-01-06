@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método Metanóia | Autopercepção</title>
+    <style>
+        :root {
+            --bg: #fdfdfc;
+            --text-main: #1a1a1a;
+            --text-light: #5d6d7e;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 650px;
+            width: 85%;
+            padding: 60px 20px;
+            margin: auto;
+            flex-grow: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-weight: normal;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+        }
+
+        .definicao-metanoia {
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .advertencia-etica {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: #7f8c8d;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.8s ease-in-out; }
+
+        label {
+            display: block;
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        textarea, select, input[type="text"] {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            font-size: 1.1rem;
+            font-family: 'Georgia', serif;
+            color: var(--text-main);
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .nav-buttons {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            background: none;
+            border: 1px solid var(--text-main);
+            padding: 12px 30px;
+            cursor: pointer;
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            transition: all 0.4s;
+        }
+
+        button:hover { background: var(--text-main); color: #fff; }
+
+        .btn-back { border: none; color: var(--text-light); }
+
+        .psico-edu {
+            margin-top: 40px;
+            padding: 25px;
+            background: #f4f4f2;
+            font-size: 0.95rem;
+            color: #34495e;
+            line-height: 1.7;
+            border-left: 3px solid var(--text-main);
+        }
+
+        input[type="range"] { width: 100%; margin: 25px 0; cursor: pointer; }
+
+        /* Rodapé de Licenciamento */
+        .footer-license {
+            font-size: 0.75rem;
+            color: #95a5a6;
+            text-align: center;
+            padding: 40px 20px;
+            line-height: 1.8;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .footer-license a {
+            color: #7f8c8d;
+            text-decoration: none;
+            border-bottom: 1px solid #dcdcdc;
+        }
+
+        .footer-license a:hover { color: #1a1a1a; border-bottom: 1px solid #1a1a1a; }
+
+        .cc-icons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            align-items: center;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+        <h1>Método Metanóia</h1>
+        <div class="definicao-metanoia">
+            <strong>Metanóia</strong> <br>
+            Processo de transformação profunda do modo de pensar, sentir, viver e se relacionar.
+        </div>
+        <div id="manifesto" class="advertencia-etica">
+            "O Método Metanóia não faz promessas vazias. O sistema disponibiliza as ferramentas, mas você é o guia. Transforme-se a cada dia naquilo que você mesmo quer ser."
+        </div>
+    </header>
+
+    <div id="metanoia-flow">
+        <div class="step active" data-step="1">
+            <label>Em qual esfera da sua existência o desafio se manifesta com maior urgência?</label>
+            <select id="area">
+                <option value="Saúde">Dimensão Biológica e Vitalidade</option>
+                <option value="Trabalho">Esfera Profissional e Realização</option>
+                <option value="Educação">Desenvolvimento Cognitivo e Saber</option>
+                <option value="Relacionamentos">Dinâmicas Interpessoais e Afeto</option>
+                <option value="Finanças">Gestão de Recursos e Segurança</option>
+            </select>
+            <div class="nav-buttons">
+                <span></span>
+                <button onclick="nextStep(1)">Iniciar Percurso</button>
+            </div>
+        </div>
+
+        <div class="step" data-step="2">
+            <label>Como você descreveria a essência desse desafio hoje?</label>
+            <textarea id="desafio" rows="2" placeholder="Descreva o fenômeno..."></textarea>
+            <div class="nav-buttons">
+                <button class="btn-back" onclick="prevStep(2)">Retornar</button>
+                <button onclick="nextStep(2)">Avançar</button>
+            </div>
+        </div>
+
+        <div class="step" data-step="3">
+            <label>Qual tem sido o seu posicionamento (ação ou omissão) diante disso?</label>
+            <textarea id="estrategia" rows="2" placeholder="Sua reação atual..."></textarea>
+            <div class="nav-buttons">
+                <button class="btn-back" onclick="prevStep(3)">Retornar</button>
+                <button onclick="nextStep(3)">Avançar</button>
+            </div>
+        </div>
+
+        <div class="step" data-step="4">
+            <label>Numa escala de 0 a 10, quão funcional é esse posicionamento para sua evolução?</label>
+            <input type="range" id="eficacia" min="0" max="10" value="5" oninput="document.getElementById('nota').innerText = this.value">
+            <div style="text-align:center; font-size: 1.5rem;" id="nota">5</div>
+            <div class="nav-buttons">
+                <button class="btn-back" onclick="prevStep(4)">Retornar</button>
+                <button onclick="nextStep(4)">Avançar</button>
+            </div>
+        </div>
+
+        <div class="step" data-step="5">
+            <label>Se você pudesse adotar uma perspectiva externa e isenta, que orientação daria a si mesmo?</label>
+            <textarea id="conselho" rows="2" placeholder="O conselho do observador lúcido..."></textarea>
+            <div class="nav-buttons">
+                <button class="btn-back" onclick="prevStep(5)">Retornar</button>
+                <button onclick="nextStep(5)">Avançar</button>
+            </div>
+        </div>
+
+        <div class="step" data-step="6">
+            <label>Qual micro-movimento concreto é possível realizar nas próximas 24 horas?</label>
+            <input type="text" id="acao" placeholder="Um gesto em direção à mudança...">
+            <div id="psico-box" class="psico-edu"></div>
+            <div class="nav-buttons">
+                <button class="btn-back" onclick="prevStep(6)">Retornar</button>
+                <button onclick="exportMetanoia()">Consolidar Percurso</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer-license">
+    <a href="https://psicologiaebemviver.club/">Método Metanóia</a> © 2026 por 
+    <a href="https://romeromarcius.com/">Criação e desenvolvimento de Romero Marcius Viegas Meireles (RomeroPsiBit) - psicólogo CRP: 04/21500, com auxílio da Gemini AI - Google</a> 
+    <br>Licenciado sob <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>
+    <div class="cc-icons">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="CC" style="height: 1.2em;">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="BY" style="height: 1.2em;">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg" alt="NC" style="height: 1.2em;">
+        <img src="https://mirrors.creativecommons.org/presskit/icons/nd.svg" alt="ND" style="height: 1.2em;">
+    </div>
+</footer>
+<script>
+    const metanoia_insights = {
+        "Saúde": "Fundamentação: A metanóia começa pelo templo biológico. O sofrimento psíquico frequentemente encontra eco em um corpo desregulado.",
+        "Trabalho": "Fundamentação: Sua realização profissional é uma extensão do seu ser, não a sua totalidade. Refletir sobre o 'porquê' precede o 'como'.",
+        "Educação": "Fundamentação: O acúmulo de informações difere da sabedoria. A verdadeira mudança ocorre quando o saber vira ação.",
+        "Relacionamentos": "Fundamentação: Todo encontro é um espelho. Compreender seus vínculos exige discernir entre suas projeções e a alteridade do outro.",
+        "Finanças": "Fundamentação: A gestão de recursos reflete sua relação com segurança e autonomia. Identifique carências projetadas na estabilidade."
+    };
+
+    function nextStep(current) {
+        if(current === 1) document.getElementById('manifesto').style.display = 'none';
+        if(current === 5) {
+            const area = document.getElementById('area').value;
+            document.getElementById('psico-box').innerText = metanoia_insights[area];
+        }
+        document.querySelector(`[data-step="${current}"]`).classList.remove('active');
+        document.querySelector(`[data-step="${current + 1}"]`).classList.add('active');
+        window.scrollTo(0,0);
+    }
+
+    function prevStep(current) {
+        if(current === 2) document.getElementById('manifesto').style.display = 'block';
+        document.querySelector(`[data-step="${current}"]`).classList.remove('active');
+        document.querySelector(`[data-step="${current - 1}"]`).classList.add('active');
+    }
+
+    function exportMetanoia() {
+        const area = document.getElementById('area').value;
+        const texto = `MÉTODO METANÓIA - CONSOLIDAÇÃO\n` +
+            `Autor: Romero Marcius Viegas Meireles\n` +
+            `Data: ${new Date().toLocaleString()}\n` +
+            `------------------------------------------------------------\n` +
+            `ESFERA: ${area}\n` +
+            `DESAFIO: ${document.getElementById('desafio').value}\n` +
+            `POSICIONAMENTO: ${document.getElementById('estrategia').value}\n` +
+            `FUNCIONALIDADE: ${document.getElementById('eficacia').value}/10\n` +
+            `CONSELHO: ${document.getElementById('conselho').value}\n` +
+            `AÇÃO 24H: ${document.getElementById('acao').value}\n\n` +
+            `FUNDAMENTAÇÃO:\n${metanoia_insights[area]}\n` +
+            `------------------------------------------------------------\n` +
+            `Licenciado sob CC BY-NC-ND 4.0\n` +
+            `Este arquivo é de propriedade única do usuário.`;
+
+        const blob = new Blob([texto], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `Metanoia_Registro.txt`;
+        link.click();
+        alert("Percurso consolidado localmente.");
+    }
+</script>
+</body>
+</html>
