@@ -10,6 +10,7 @@
             --text-main: #1a1a1a;
             --text-light: #5d6d7e;
             --border: #e0e0e0;
+            --accent: #34495e;
         }
 
         body {
@@ -41,6 +42,50 @@
             text-transform: uppercase;
             font-size: 1.5rem;
             margin-bottom: 20px;
+        }
+
+        /* Botão Tutorial */
+        .btn-tutorial {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        .btn-tutorial:hover { background: #eee; }
+
+        /* Modal (Popup) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 85%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .modal-content h2 { font-weight: 300; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .modal-content p { line-height: 1.6; color: var(--text-light); font-size: 0.95rem; }
+        .close-modal {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--text-light);
         }
 
         .definicao-metanoia {
@@ -101,7 +146,7 @@
             align-items: center;
         }
 
-        button {
+        .btn-main {
             background: var(--text-main);
             color: #fff;
             border: none;
@@ -111,12 +156,9 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 0.85rem;
-            transition: opacity 0.3s;
         }
 
-        button:hover { opacity: 0.8; }
-
-        .btn-back { background: none; color: var(--text-light); border: 1px solid var(--border); }
+        .btn-back { background: none; color: var(--text-light); border: 1px solid var(--border); padding: 14px 30px; border-radius: 30px; cursor: pointer;}
 
         .psico-edu {
             margin-top: 30px;
@@ -147,8 +189,25 @@
 </head>
 <body>
 
+<div id="tutorialModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeTutorial()">&times;</span>
+        <h2>Como funciona?</h2>
+        <p>O <strong>Método Metanóia</strong> é um exercício de escrita reflexiva. Siga estes passos:</p>
+        <ol style="color: var(--text-light); line-height: 1.8;">
+            <li><strong>Escolha uma área:</strong> Foque no que mais te incomoda hoje.</li>
+            <li><strong>Sinceridade:</strong> Responda às perguntas pensando na sua realidade atual.</li>
+            <li><strong>Dica Psi:</strong> No final, você receberá uma reflexão clínica sobre o tema escolhido.</li>
+            <li><strong>Registro:</strong> Salve seu progresso para ler depois. Seus dados são privados.</li>
+            <li><strong>Importante:</strong> O Método Metanóia não substitui psicoterapia. Se você tem algum problema de saúde, faça consulta com um profissional de saúde competente.</li>
+        </ol>
+        <button class="btn-main" style="width: 100%; margin-top: 10px;" onclick="closeTutorial()">Entendi</button>
+    </div>
+</div>
+
 <div class="container">
     <header class="header">
+        <button class="btn-tutorial" onclick="openTutorial()">? Tutorial / Como funciona</button>
         <h1>Método Metanóia</h1>
         <div class="definicao-metanoia">
             <strong>Metanóia</strong> <br>
@@ -156,13 +215,13 @@
         </div>
         <div id="manifesto-box" class="advertencia-etica">
             "O Método Metanóia não faz promessas vazias. O sistema disponibiliza as ferramentas, mas você é o guia. Transforme-se a cada dia naquilo que você mesmo quer ser."
-            <span class="chamada-acao">Responda as perguntas das etapas abaixo e inicie o seu movimento de transformação agora:</span>
+            <span class="chamada-acao">Responda as perguntas nas etapas abaixo e inicie o seu movimento de transformação agora:</span>
         </div>
     </header>
 
     <div id="metanoia-flow">
         <div class="step active" data-step="1">
-            <label>Em qual área da sua vida você sente que precisa de ajuda agora?</label>
+            <label>Em qual área da sua vida você pensa que precisa de ajuda agora? (Selecione a área escolhida e clique em Enviar Resposta)</label>
             <select id="area">
                 <option value="Saúde">Saúde e Disposição (Corpo e Mente)</option>
                 <option value="Trabalho">Trabalho e Carreira</option>
@@ -172,54 +231,54 @@
             </select>
             <div class="nav-buttons">
                 <span></span>
-                <button onclick="nextStep(1)">Iniciar Percurso</button>
+                <button class="btn-main" onclick="nextStep(1)">Enviar Resposta</button>
             </div>
         </div>
 
         <div class="step" data-step="2">
-            <label>O que exatamente está acontecendo que mais incomoda você hoje?</label>
-            <textarea id="desafio" rows="3" placeholder="Conte brevemente o que você está enfrentando..."></textarea>
+            <label>Descreva com poucas palavras o que exatamente está acontecendo que mais incomoda você hoje?</label>
+            <textarea id="desafio" rows="3" placeholder="Escreva brevemente o que você está enfrentando..."></textarea>
             <div class="nav-buttons">
                 <button class="btn-back" onclick="prevStep(2)">Voltar</button>
-                <button onclick="nextStep(2)">Próximo</button>
+                <button class="btn-main" onclick="nextStep(2)">Próxima Pergunta</button>
             </div>
         </div>
 
         <div class="step" data-step="3">
             <label>Como você tem reagido a essa situação até agora?</label>
-            <textarea id="estrategia" rows="3" placeholder="O que você está fazendo ou deixando de fazer?"></textarea>
+            <textarea id="estrategia" rows="3" placeholder="Escreva aqui com poucas palavras o que você está fazendo ou deixando de fazer para resolver a situação apresentada."></textarea>
             <div class="nav-buttons">
                 <button class="btn-back" onclick="prevStep(3)">Voltar</button>
-                <button onclick="nextStep(3)">Próximo</button>
+                <button class="btn-main" onclick="nextStep(3)">Próxima Pergunta</button>
             </div>
         </div>
 
         <div class="step" data-step="4">
-            <label>Dê uma nota de 0 a 10: o quanto a sua reação atual está realmente ajudando a resolver o problema?</label>
+            <label> O quanto a sua reação atual está realmente ajudando a resolver o problema apresentado? (Dê uma nota de 0 a 10)</label>
             <input type="range" id="eficacia" min="0" max="10" value="5" oninput="document.getElementById('nota').innerText = this.value">
             <div style="text-align:center; font-size: 2rem; font-weight: bold; color: var(--text-main);" id="nota">5</div>
             <div class="nav-buttons">
                 <button class="btn-back" onclick="prevStep(4)">Voltar</button>
-                <button onclick="nextStep(4)">Próximo</button>
+                <button class="btn-main" onclick="nextStep(4)">Próxima Pergunta</button>
             </div>
         </div>
 
         <div class="step" data-step="5">
-            <label>Se você fosse um amigo muito sábio dando um conselho para si mesmo, o que diria?</label>
-            <textarea id="conselho" rows="3" placeholder="Qual seria a orientação mais sensata agora?"></textarea>
+            <label>Se você fosse um amigo muito sábio dando um conselho para você mesmo, qual conselho daria?</label>
+            <textarea id="conselho" rows="3" placeholder="Escreva brevemente: qual seria a orientação mais sensata agora?"></textarea>
             <div class="nav-buttons">
                 <button class="btn-back" onclick="prevStep(5)">Voltar</button>
-                <button onclick="nextStep(5)">Próximo</button>
+                <button class="btn-main" onclick="nextStep(5)">Próxima Resposta</button>
             </div>
         </div>
 
         <div class="step" data-step="6">
-            <label>Qual é a única coisa pequena que você consegue fazer amanhã para começar essa mudança?</label>
-            <input type="text" id="acao" placeholder="Um pequeno passo possível...">
+            <label>Qual é a única coisa pequena que você consegue fazer hoje para começar a mudança da situação apresentada?</label>
+            <input type="text" id="acao" placeholder="Com poucas palavras descreva um pequeno passo possível...">
             <div id="psico-box" class="psico-edu"></div>
             <div class="nav-buttons">
                 <button class="btn-back" onclick="prevStep(6)">Voltar</button>
-                <button onclick="exportMetanoia()">Finalizar e Salvar</button>
+                <button class="btn-main" onclick="exportMetanoia()">Finalizar e Salvar</button>
             </div>
         </div>
     </div>
@@ -238,19 +297,49 @@
 </footer>
 
 <script>
-    const metanoia_insights = {
-        "Saúde": "Dica Psi: Mudar a mente começa pelo corpo. Cuidar do seu sono e da sua energia é o primeiro passo para pensar melhor.",
-        "Trabalho": "Dica Psi: O trabalho é o que você faz, não quem você é. Tente separar sua identidade da sua função profissional.",
-        "Estudos": "Dica Psi: Aprender algo novo exige paciência consigo mesmo. O conhecimento só vira sabedoria quando colocamos em prática.",
-        "Relacionamentos": "Dica Psi: Nossos vínculos com os outros são como espelhos. Entender o outro ajuda a entender a nós mesmos.",
-        "Finanças": "Dica Psi: A forma como lidamos com o dinheiro diz muito sobre como buscamos segurança. O equilíbrio é o segredo."
+    const banco_dicas = {
+        "Saúde": [
+            "Dica Psi: Mudar a mente começa pelo corpo. Cuidar do seu sono e da sua energia é o primeiro passo para pensar melhor.",
+            "Dica Psi: Pequenas pausas durante o dia valem mais que um descanso longo no final de semana.",
+            "Dica Psi: Escute os sinais do seu corpo; muitas vezes a mente grita o que o corpo já avisou silenciosamente."
+        ],
+        "Trabalho": [
+            "Dica Psi: O trabalho é o que você faz, não quem você é. Tente separar sua identidade da sua função profissional.",
+            "Dica Psi: Produtividade não é fazer mais, é fazer o que importa com menos estresse.",
+            "Dica Psi: Seus limites profissionais protegem sua saúde mental. Aprender a dizer 'não' é uma competência técnica."
+        ],
+        "Estudos": [
+            "Dica Psi: Aprender algo novo exige paciência consigo mesmo. O conhecimento só vira sabedoria quando colocamos em prática.",
+            "Dica Psi: O erro faz parte do aprendizado. Não se cobre perfeição em um processo que é, por natureza, de descoberta.",
+            "Dica Psi: Estudar não é apenas acumular dados, é treinar o olhar para perceber o mundo de novas formas."
+        ],
+        "Relacionamentos": [
+            "Dica Psi: Nossos vínculos com os outros são como espelhos. Entender o outro ajuda a entender a nós mesmos.",
+            "Dica Psi: Comunicação não é o que você diz, é o que o outro compreende. Foque na clareza e no afeto.",
+            "Dica Psi: Relações saudáveis exigem espaço individual. Estar junto não significa estar misturado."
+        ],
+        "Finanças": [
+            "Dica Psi: A forma como lidamos com o dinheiro diz muito sobre como buscamos segurança. O equilíbrio é o segredo.",
+            "Dica Psi: Organizar suas contas é uma forma de organizar o seu futuro e reduzir a ansiedade do presente.",
+            "Dica Psi: O dinheiro é uma ferramenta, não o senhor da sua vida. Busque o equilíbrio entre poupar e viver."
+        ]
     };
+
+    function openTutorial() { document.getElementById('tutorialModal').style.display = 'block'; }
+    function closeTutorial() { document.getElementById('tutorialModal').style.display = 'none'; }
+
+    window.onclick = function(event) {
+        let modal = document.getElementById('tutorialModal');
+        if (event.target == modal) { modal.style.display = "none"; }
+    }
 
     function nextStep(current) {
         if(current === 1) document.getElementById('manifesto-box').style.display = 'none';
         if(current === 5) {
             const area = document.getElementById('area').value;
-            document.getElementById('psico-box').innerText = metanoia_insights[area];
+            const dicas = banco_dicas[area];
+            const dicaAleatoria = dicas[Math.floor(Math.random() * dicas.length)];
+            document.getElementById('psico-box').innerText = dicaAleatoria;
         }
         document.querySelector(`[data-step="${current}"]`).classList.remove('active');
         document.querySelector(`[data-step="${current + 1}"]`).classList.add('active');
@@ -266,16 +355,16 @@
     function exportMetanoia() {
         const area = document.getElementById('area').value;
         const texto = `MEU EXERCÍCIO - MÉTODO METANÓIA\n` +
-            `Guia: Romero Marcius Viegas Meireles (RomeroPsiBit)\n` +
+            `Supervisor: Romero Marcius Viegas Meireles (RomeroPsiBit)\n` +
             `Data: ${new Date().toLocaleString()}\n` +
             `------------------------------------------------------------\n` +
             `ÁREA: ${area}\n` +
+            `DICA PSI RECEBIDA: ${document.getElementById('psico-box').innerText}\n\n` +
             `O PROBLEMA: ${document.getElementById('desafio').value}\n` +
             `MINHA REAÇÃO: ${document.getElementById('estrategia').value}\n` +
             `NOTA DE EFICÁCIA: ${document.getElementById('eficacia').value}/10\n` +
             `MEU CONSELHO PARA MIM MESMO: ${document.getElementById('conselho').value}\n` +
-            `MEU PRÓXIMO PASSO: ${document.getElementById('acao').value}\n\n` +
-            `REFLEXÃO:\n${metanoia_insights[area]}\n` +
+            `MEU PRÓXIMO PASSO: ${document.getElementById('acao').value}\n` +
             `------------------------------------------------------------\n` +
             `Privacidade: Seus dados não foram salvos na internet.\n` +
             `Licença CC BY-NC-ND 4.0`;
